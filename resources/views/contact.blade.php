@@ -35,7 +35,7 @@
                                 <input type="text" class="message-box" placeholder="Message" name='message' value="{{ old('message')}}"/>
                                 
                                 @if ($errors->first('message'))
-                                    <span class="text-danger"> {{ $errors->first('message')}}</span>  
+                                    <span class="text-danger"> {{ $errors->first('messages')}}</span>  
                                 @endif
                             </div>
                             
