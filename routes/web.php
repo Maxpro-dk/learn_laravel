@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Blog;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +22,18 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/about', function(){
+     
+    $article = Blog::create([
+        'title' => ' ceci est un titre',
+        'description' => 'ceci est une description'
+    ]);
 
-    $name = "Maxime";
+    $articles = Blog::all();
 
-    return view('about', compact('name'));
+   
+
+
+    return view('about', compact('articles'));
 })->name('about');
 
 Route::get('/contact', function () {
@@ -39,14 +49,24 @@ Route::post('/contact/store',function(Request $request){
         'message' => 'nullable|min:3|max:200'
     ]);
 
-    $name = $request->name;
-    $email= $request->email;
-    $phone= $request->phone;
-    $message = $request->message;
+    $contact = Contact::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'message' => $request->message
+    ]);
 
-    return redirect()->route('home');
-    // return view('contact', compact('name','email', 'phone', 'message'));
+
+
+    
+    return view('contact', compact('contact'));
 })->name('contact.store');
+
+
+Route::get('/contact/list', function(){
+    $contacts = Contact::where('phone','90581436')->get();
+    return view('contact_list', compact('contacts'));
+})->name('contact.list');
 
 
 require __DIR__.'/auth.php';

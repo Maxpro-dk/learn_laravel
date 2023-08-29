@@ -9,21 +9,25 @@
                 <img src="{{ asset('assets/images/about-img.png')}} " alt="">
             </div>
             </div>
-            <div class="col-md-6">
-            <div class="detail-box">
-                <div class="heading_container">
-                <h2>
-                    About {{ $name }}
-                </h2>
+            @foreach ($articles as $article)
+                
+                <div class="col-md-6">
+                    <div class="detail-box">
+                        <div class="heading_container">
+                        <h2>
+                         {{ $article->title }}
+                        </h2>
+                        </div>
+                        <p>
+                            {{ $article->description }}
+                    
+                        </p>
+                        <a href="">
+                    vois plus
+                        </a>
+                    </div>
                 </div>
-                <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti dolorem eum consequuntur ipsam repellat dolor soluta aliquid laborum, eius odit consectetur vel quasi in quidem, eveniet ab est corporis tempore.
-                </p>
-                <a href="">
-                Read More
-                </a>
-            </div>
-            </div>
+            @endforeach
         </div>
         </div>
     </section>

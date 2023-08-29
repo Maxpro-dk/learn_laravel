@@ -35,7 +35,7 @@
                                 <input type="text" class="message-box" placeholder="Message" name='message' value="{{ old('message')}}"/>
                                 
                                 @if ($errors->first('message'))
-                                    <span class="text-danger"> {{ $errors->first('messages')}}</span>  
+                                    <span class="text-danger"> {{ $errors->first('message')}}</span>  
                                 @endif
                             </div>
                             
@@ -48,14 +48,14 @@
                         </form>
                     </div>
                 </div>
-                @if (isset($name))
+                @if (isset($contact))
                     <div class="col-md-6">
-                        <p> Nom: {{ $name }}</p>
-                        <p> Email: {{ $email }}</p>
-                        <p>Tel :  {{ $phone }}</p>
+                        <p> Nom: {{ $contact->name }}</p>
+                        <p> Email: {{ $contact->email }}</p>
+                        <p>Tel :  {{ $contact->phone }}</p>
                         <h6> Message </h6>
                         <p>
-                            {{ $message }}
+                            {{ $contact->message }}
                         </p>
                     </div>
                 @endif
