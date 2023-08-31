@@ -44,22 +44,26 @@ Route::post('/contact/store',function(Request $request){
 
     $request->validate([
         'name' => ['required', 'min:3', 'string'],
-        'email'=> ['required', 'email'],
+        'email'=> ['required', 'email', 'unique:contacts'],
         'phone' => ['required'],
-        'message' => 'nullable|min:3|max:200'
+        'message' => 'nullable|min:3|max:200',
+        'image' => ['nullable', 'file' ,'image']
     ]);
+
+    $file_path = $request->image->store('public');
+
 
     $contact = Contact::create([
         'name' => $request->name,
         'email' => $request->email,
         'phone' => $request->phone,
-        'message' => $request->message
+        'message' => $request->message,
+        'image' => $file_path
     ]);
 
 
-
     
-    return view('contact', compact('contact'));
+    return redirect()->route('contact.list');
 })->name('contact.store');
 
 
@@ -67,6 +71,12 @@ Route::get('/contact/list', function(){
     $contacts = Contact::where('phone','90581436')->get();
     return view('contact_list', compact('contacts'));
 })->name('contact.list');
+
+Route::get('/contact/view/{id}/{type}', function($id, $type){
+
+    $contact =  Contact::where('id',$id)->first();
+    return  view('contact_view', compact('contact'));
+})->name('contact.view');
 
 
 require __DIR__.'/auth.php';

@@ -11,7 +11,7 @@
                                 Contact Us
                             </h2>
                         </div>
-                        <form method="POST" action="{{ route('contact.store') }}">
+                        <form method="POST" action="{{ route('contact.store') }}"  enctype="multipart/form-data">
                             @csrf
                             <div>
                                 <input class="form-control" type="text" placeholder="Your Name" name="name" value="{{ old('name') }}" />
@@ -38,6 +38,14 @@
                                     <span class="text-danger"> {{ $errors->first('message')}}</span>  
                                 @endif
                             </div>
+
+                            <div>
+                                <label for="image"> Image</label>
+                                <input class="form-control" type="file"  name='image'  />
+                                @error('image')
+                                    <span class="text-danger"> {{ $errors->first('image')}}</span>   
+                                @enderror
+                            </div>
                             
 
                             <div class="btn_box">
@@ -57,6 +65,7 @@
                         <p>
                             {{ $contact->message }}
                         </p>
+                        <img src="{{ Storage::url($contact->image) }}">
                     </div>
                 @endif
                

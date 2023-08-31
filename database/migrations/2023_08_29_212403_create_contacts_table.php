@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('email',250)->unique();
             $table->integer('phone');
-            $table->text('message');
+            $table->text('message')->nullable();
+            $table->text('image')->nullable();
             $table->boolean('is_viewed')->default(false);
             $table->timestamps();
         });
