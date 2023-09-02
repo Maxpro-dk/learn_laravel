@@ -39,7 +39,7 @@
                             {{ $contact->message }}
                         </td>
                         <td>
-                            <a  class=" btn btn-primary" href="{{ route('contact.view', ['id'=>$contact->id, 'type'=>"hdhhdh"]) }}"> Voir</a>
+                            <a  class=" btn btn-primary" href="{{ route('contact.show', ['contact'=>$contact->id]) }}"> Voir</a>
 
                             {{-- <a  class=" btn btn-primary" href="{{ route('contact.view', $contact->id ) }}"> Voir</a> --}}
                         </td>

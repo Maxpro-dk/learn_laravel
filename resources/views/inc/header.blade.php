@@ -22,13 +22,13 @@
                 <a class="nav-link" href="{{ route('about') }}"> About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('contact.list') }}">Liste des contacts</a>
+                <a class="nav-link" href="{{ route('contact.index') }}">Liste des contacts</a>
               </li>
               <li class="nav-item active">
                 <a class="nav-link" href="blog.html">Blog</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('contact')}}">Contact Us</a>
+                <a class="nav-link" href="{{ route('contact.create')}}">Contact Us</a>
               </li>
             </ul>
           </div>
