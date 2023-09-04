@@ -28,6 +28,25 @@ Route::get('/about', [HomeController::class,'about'])->name('about');
 
 Route::resource('contact', ContactController::class);
 
+// Blog                            
+// id 
+// titre
+// descriptioon
+// category_id
+// image_id
+
+
+
+// category
+// id
+// titre
+
+// Image
+// id
+// chemin
+
+
+
 
 
 

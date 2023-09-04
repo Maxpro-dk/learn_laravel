@@ -9,8 +9,23 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected  $fillable = [
         'title',
-        'description'
+        'description',
+        'image_id',
+        'category_id'
     ];
+
+
+    public function image(){
+        return $this->belongsTo(Image::class);
+    }
+
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+
+
 }
