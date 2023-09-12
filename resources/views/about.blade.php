@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 @section('content')
     <section class="about_section layout_padding long_section">

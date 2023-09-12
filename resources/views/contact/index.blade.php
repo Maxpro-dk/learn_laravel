@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.home')
 @section('content')
     <div class="mt-4">
         <h1> Liste des contacts</h1>

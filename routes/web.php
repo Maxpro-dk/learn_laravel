@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController;
-use App\Models\Blog;
-use App\Models\Contact;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -19,38 +16,32 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/about', [HomeController::class,'about'])->name('about');
-// Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-// Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
-// Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
-// Route::get('/contact/{id}', [ContactController::class, 'show'])->name('contact.show');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::resource('contact', ContactController::class);
-
-// Blog                            
-// id 
-// titre
-// descriptioon
-// category_id
-// image_id
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
+Route::get('/home',[HomeController::class,'index'])->name('home');
+// Route::get('/about', [HomeController::class,'about'])->middleware(['auth'])->name('about');
+// Route::resource('contact', ContactController::class)->middleware(['auth','verified']);
 
-// category
-// id
-// titre
+Route::middleware('auth')->group(function(){
+    
+    Route::get('/about', [HomeController::class,'about'])->name('about');
+    Route::resource('contact', ContactController::class);
 
-// Image
-// id
-// chemin
-
-
-
-
+});
 
 
+Route::middleware('auth')->group(function () {
 
-
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__.'/auth.php';

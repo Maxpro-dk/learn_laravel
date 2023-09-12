@@ -33,17 +33,33 @@
             </ul>
           </div>
           <div class="quote_btn-container">
+          
+            @guest
             <a href="">
               <span>
                 Login
               </span>
               <i class="fa fa-user" aria-hidden="true"></i>
             </a>
-            <form class="form-inline">
-              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </form>
+            @endguest
+            @auth
+              <a href="">
+                <span>
+                {{ auth()->user()->email }}
+                </span>
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </a>
+              <form method="POST" action="{{ route('logout') }}" class="form-inline">
+                @csrf
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                  Deconnexion
+                </button>
+              </form>
+            @endauth
+          
+           
+
+
           </div>
         </div>
       </nav>

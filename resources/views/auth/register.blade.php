@@ -4,6 +4,10 @@
 
         <!-- Name -->
         <div>
+            <label for="last_name"> Nom de famille</label>
+            <input type="text" name="last_name" id="last_name">
+        </div>
+        <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
